@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeformisDark Project</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #0c0c0f;
+        color: #e8e8e8;
+        overflow-x: hidden;
+    }
+    canvas#particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    header {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+    header img.banner {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+    .avatar-container {
+        display: flex;
+        justify-content: center;
+        margin-top: -80px;
+    }
+    .avatar-container img {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 5px solid #222;
+        box-shadow: 0 0 15px #000;
+    }
+    h1 {
+        text-align: center;
+        font-size: 2.8rem;
+        margin-top: 10px;
+        color: #d36b32;
+        letter-spacing: 2px;
+    }
+    section {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #15151a;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #000;
+    }
+    h2 {
+        color: #d36b32;
+        border-left: 5px solid #d36b32;
+        padding-left: 10px;
+    }
+    .collections a {
+        display: block;
+        margin: 10px 0;
+        padding: 10px;
+        background: #1d1d24;
+        color: #e8e8e8;
+        text-decoration: none;
+        border-radius: 6px;
+        border: 1px solid #333;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+    <img src="img/banner.png" class="banner">
+</header>
+
+<div class="avatar-container">
+    <img src="img/avatar.png">
+</div>
+
+<h1>DeformisDark Project</h1>
+
+<section>
+    <h2>Lore</h2>
+    <p>Entre as brechas esquecidas do multiverso, criaturas corrompidas emergem de uma matriz de trevas digitais...</p>
+</section>
+
+<section class="collections">
+    <h2>Coleções</h2>
+    <a href="https://opensea.io/collection/deformisdark-toonz-infection" target="_blank">Toonz Infection</a>
+    <a href="https://opensea.io/collection/legado-dos-titas-celestiais" target="_blank">Legado dos Titãs Celestiais</a>
+    <a href="https://opensea.io/collection/deformisdark-fragmentos-do-codigo-perdido" target="_blank">Fragmentos do Código Perdido</a>
+    <a href="https://opensea.io/collection/deformisdark-fase1-o-despertar-do-vazio" target="_blank">Fase 1 — O Despertar do Vazio</a>
+    <a href="https://opensea.io/collection/deformisdark-guerreiros-da-nevoa-sombria" target="_blank">Guerreiros da Névoa Sombria</a>
+    <a href="https://opensea.io/collection/deformisdark-criptogenesis" target="_blank">Criptogênesis</a>
+    <a href="https://opensea.io/collection/deformisdark-entidade-singulares" target="_blank">Entidades Singulares</a>
+    <a href="https://opensea.io/collection/deformisdark-ossos-do-abismo" target="_blank">Ossos do Abismo</a>
+</section>
+
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3
+    });
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#444";
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        p.x += p.speedX;
+        p.y += p.speedY;
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+</script>
+
+</body>
+</html>
